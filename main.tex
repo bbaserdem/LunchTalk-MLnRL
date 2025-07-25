@@ -182,7 +182,100 @@
   \textbf{LLMs are powerful, but purpose-built ML models remain irreplaceable}
 \end{frame}
 
-% Slide 7: What is Reinforcement Learning?
+% Slide 8: Convolutional Neural Networks (CNNs)
+\begin{frame}{Convolutional Neural Networks (CNNs)}
+  \begin{columns}
+    \column{0.5\textwidth}
+    \textbf{Key Concepts:}
+    \begin{itemize}
+      \item \textbf{Convolution:} Sliding filters detect features
+      \item \textbf{Pooling:} Reduces spatial dimensions
+      \item \textbf{Feature Maps:} Learned representations
+      \item \textbf{Hierarchical Learning:} From edges to objects
+    \end{itemize}
+    
+    \vspace{0.3cm}
+    \includegraphics[width=\textwidth]{images/convolutional_layer.png}
+    
+    \column{0.5\textwidth}
+    \textbf{CNN Architecture Example:}
+    \includegraphics[width=\textwidth]{images/imagenet_architecture.png}
+    
+    \vspace{0.3cm}
+    \textbf{Applications:}
+    \begin{itemize}
+      \item Image classification
+      \item Object detection
+      \item Medical imaging
+      \item Video analysis
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+% Slide 9: Encoder-Decoder Architectures
+\begin{frame}{Encoder-Decoder Architectures}
+  \begin{columns}
+    \column{0.45\textwidth}
+    \begin{center}
+      \includegraphics[width=\textwidth]{images/encoderDecoder.png}
+    \end{center}
+    
+    \vspace{0.3cm}
+    \textbf{Key Components:}
+    \small
+    \begin{itemize}
+      \item \textbf{Encoder:} Compresses input
+      \item \textbf{Bottleneck:} Latent space
+      \item \textbf{Decoder:} Reconstructs output
+    \end{itemize}
+    
+    \column{0.55\textwidth}
+    \textbf{Applications:}
+    \begin{itemize}
+      \item \textbf{Autoencoders:} Data compression, denoising
+      \item \textbf{VAEs:} Generative modeling
+      \item \textbf{Seq2Seq:} Machine translation
+      \item \textbf{U-Net:} Image segmentation
+      \item \textbf{BERT:} Bidirectional encoding
+    \end{itemize}
+    
+    \vspace{0.3cm}
+    \textbf{Key Insight:} Learn meaningful representations by forcing information through a bottleneck
+  \end{columns}
+\end{frame}
+
+% Slide 10: Generative Adversarial Networks (GANs)
+\begin{frame}{Generative Adversarial Networks (GANs)}
+  \begin{columns}
+    \column{0.5\textwidth}
+    \begin{center}
+      \includegraphics[width=\textwidth]{images/gan.png}
+    \end{center}
+    
+    \textbf{Two-Player Game:}
+    \small
+    \begin{itemize}
+      \item \textbf{Generator:} Creates fake samples
+      \item \textbf{Discriminator:} Real vs fake
+      \item \textbf{Adversarial:} Compete to improve
+    \end{itemize}
+    
+    \column{0.5\textwidth}
+    \textbf{Applications:}
+    \begin{itemize}
+      \item \textbf{Image Generation:} DALL-E, Midjourney
+      \item \textbf{Style Transfer:} Artistic rendering
+      \item \textbf{Data Augmentation:} Training data
+      \item \textbf{Super-resolution:} Image enhancement
+      \item \textbf{Video Synthesis:} Deepfakes
+    \end{itemize}
+    
+    \vspace{0.2cm}
+    \textbf{Key Insight:} Competition drives both networks to improve
+  \end{columns}
+\end{frame}
+
+% Slide 11: What is Reinforcement Learning?
 \begin{frame}{What is Reinforcement Learning (RL)?}
   \textbf{Core Idea:} Agent explores, makes decisions, receives
   rewards/punishments
@@ -227,7 +320,7 @@
   \end{columns}
 \end{frame}
 
-% Slide 9: RL in Practice
+% Slide 12: RL in Practice
 \begin{frame}{RL in Practice — Beyond LLMs}
   \begin{columns}
     \column{0.5\textwidth}
