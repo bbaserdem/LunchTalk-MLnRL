@@ -1,4 +1,7 @@
 {
+  "name": "ml-rl-presentation",
+  "version": "1.1.0",
+  "description": "ML & RL Lunch Talk Presentation",
   "dependencies": {
     "@anthropic-ai/claude-code": "^1.0.60"
   }

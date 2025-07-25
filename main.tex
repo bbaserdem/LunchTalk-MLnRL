@@ -110,7 +110,62 @@
   \end{columns}
 \end{frame}
 
-% Slide 6: Why LLMs Don't Cover it All
+% Slide 6: Neural Network Architecture
+\begin{frame}{Neural Network Architecture}
+  \begin{columns}
+    \column{0.55\textwidth}
+    \begin{center}
+      \begin{tikzpicture}[scale=0.7]
+        % Input layer
+        \foreach \i in {1,2,3} {
+          \node[circle, draw, fill=blue!20, minimum size=0.7cm] (input\i) at (0, -\i*1.2) {$x_\i$};
+        }
+        
+        % Hidden layer
+        \foreach \j in {1,...,6} {
+          \node[circle, draw, fill=green!20, minimum size=0.7cm] (hidden\j) at (3, -\j*0.8 + 0.4) {$h_\j$};
+        }
+        
+        % Output layer
+        \node[circle, draw, fill=red!20, minimum size=0.7cm] (output) at (6, -2.4) {$y$};
+        
+        % Connections from input to hidden
+        \foreach \i in {1,2,3} {
+          \foreach \j in {1,...,6} {
+            \draw[->, gray!50] (input\i) -- (hidden\j);
+          }
+        }
+        
+        % Connections from hidden to output
+        \foreach \j in {1,...,6} {
+          \draw[->, gray!50] (hidden\j) -- (output);
+        }
+        
+        % Labels
+        \node[above] at (0, 0.3) {\small Input};
+        \node[above] at (3, 0.3) {\small Hidden};
+        \node[above] at (6, 0.3) {\small Output};
+      \end{tikzpicture}
+    \end{center}
+    
+    \column{0.45\textwidth}
+    \textbf{Forward Propagation:}
+    \vspace{0.3cm}
+    
+    \small
+    Hidden layer activation:
+    $$h_j = f\left(\sum_{i=1}^{3} w_{ij}^{(1)} x_i + b_j^{(1)}\right)$$
+    
+    \vspace{0.2cm}
+    Output layer activation:
+    $$y = g\left(\sum_{j=1}^{6} w_{j}^{(2)} h_j + b^{(2)}\right)$$
+    
+    \vspace{0.2cm}
+    where $f$ and $g$ are activation functions
+  \end{columns}
+\end{frame}
+
+% Slide 7: Why LLMs Don't Cover it All
 \begin{frame}{Why LLMs Don't Cover it All}
   \begin{itemize}
     \item \textbf{Vision Tasks:} LLMs can't natively interpret raw images/videos
