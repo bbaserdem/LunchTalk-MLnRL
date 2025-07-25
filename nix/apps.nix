@@ -3,7 +3,7 @@
   pkgs,
   outputs,
   ...
-} @ inputs: {
+} @ args: {
   present = {
     type = "app";
     # Launch our presentation in pdf viewer

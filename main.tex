@@ -1,0 +1,323 @@
+\documentclass[aspectratio=169]{beamer}
+\usetheme{Madrid}
+\usecolortheme{beaver}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+\title{Expanding the Horizons: ML \& RL Beyond LLMs}
+\subtitle{Machine Learning and Reinforcement Learning for Programmers}
+\author{Batuhan Başerdem}
+\date{\today}
+
+\begin{document}
+
+\frame{\titlepage}
+
+% Slide 1: Title & Overview
+\begin{frame}{Overview}
+  \begin{itemize}
+    \item ML basics and neural architectures
+    \item Key ML domains outside of LLMs
+    \item Reinforcement learning applications and emerging trends
+    \item RL on top of LLMs (RLHF)
+    \item Practical integration into real-world codebases
+  \end{itemize}
+\end{frame}
+
+% Slide 2: What is Machine Learning?
+\begin{frame}{What is Machine Learning?}
+  \textbf{Definition:} Training systems to learn from data and improve over time
+
+  \vspace{0.5cm}
+  \textbf{Key Categories:}
+  \begin{itemize}
+    \item \textbf{Supervised Learning:} Models learn from labeled data
+    \item \textbf{Unsupervised Learning:} Models uncover patterns without labels
+    \item \textbf{Reinforcement Learning:} Agents learn by trial and error
+  \end{itemize}
+
+  \vspace{0.5cm}
+  \textbf{Core Concept:} Generalization from past experience
+\end{frame}
+
+% Slide 3: Neural Networks
+\begin{frame}{Neural Networks — The Backbone}
+  \textbf{Definition:} Computational systems inspired by the human brain
+
+  \vspace{0.3cm}
+  \textbf{Functions:}
+  \begin{itemize}
+    \item Fit nonlinear functions
+    \item Recognize patterns
+    \item Automate feature extraction
+  \end{itemize}
+
+  \vspace{0.3cm}
+  \textbf{Modern Architectures:}
+  \begin{itemize}
+    \item Feedforward Networks
+    \item Convolutional Neural Networks (CNNs)
+    \item Recurrent Neural Networks (RNNs/LSTMs)
+    \item Transformers
+  \end{itemize}
+\end{frame}
+
+% Slide 4: Types of Neural Net Architectures
+\begin{frame}{Types of Neural Net Architectures}
+  \begin{table}
+    \centering
+    \begin{tabular}{ll}
+      \toprule
+      \textbf{Architecture} & \textbf{Typical Application} \\
+      \midrule
+      Feedforward NN & Credit scoring, tabular data \\
+      CNN (ConvNet) & Image \& video processing \\
+      RNN/LSTM & Time series, NLP, speech \\
+      Transformers & Language and vision tasks \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+
+  \vspace{0.5cm}
+  Each architecture is specialized for certain data types and tasks
+\end{frame}
+
+% Slide 5: ML Beyond LLMs
+\begin{frame}{ML Beyond LLMs — Real-World Workhorses}
+  \begin{columns}
+    \column{0.5\textwidth}
+    \textbf{Core Applications:}
+    \begin{itemize}
+      \item \textbf{Image Processing:} Medical imaging, defect detection
+      \item \textbf{Computational Chemistry:} Drug discovery
+      \item \textbf{Robotics:} Perception, navigation
+      \item \textbf{Anomaly Detection:} Fraud, cybersecurity
+      \item \textbf{Automated Driving:} Sensor fusion
+    \end{itemize}
+
+    \column{0.5\textwidth}
+    \textbf{Other Examples:}
+    \begin{itemize}
+      \item Time series forecasting
+      \item Speech recognition
+      \item Recommendation systems
+      \item Industrial automation
+      \item Energy optimization
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+% Slide 6: Why LLMs Don't Cover it All
+\begin{frame}{Why LLMs Don't Cover it All}
+  \begin{itemize}
+    \item \textbf{Vision Tasks:} LLMs can't natively interpret raw images/videos
+    \item \textbf{Physical World:} Robotics requires
+      spatial/kinematic understanding
+    \item \textbf{Domain Science:} Chemistry and biology need
+      physics-aware models
+    \item \textbf{Real-time Demands:} Critical systems need low
+      latency, specialized models
+  \end{itemize}
+
+  \vspace{0.5cm}
+  \centering
+  \textbf{LLMs are powerful, but purpose-built ML models remain irreplaceable}
+\end{frame}
+
+% Slide 7: What is Reinforcement Learning?
+\begin{frame}{What is Reinforcement Learning (RL)?}
+  \textbf{Core Idea:} Agent explores, makes decisions, receives
+  rewards/punishments
+
+  \vspace{0.5cm}
+  \begin{center}
+    \begin{tikzpicture}[scale=0.8]
+      \node[draw, rectangle] (agent) at (0,2) {Agent};
+      \node[draw, rectangle] (env) at (4,2) {Environment};
+      \draw[->, thick] (agent) -- node[above] {Action} (env);
+      \draw[->, thick] (env) to[bend right=30] node[below] {State,
+      Reward} (agent);
+    \end{tikzpicture}
+  \end{center}
+
+  \vspace{0.5cm}
+  \textbf{Distinction:} Not about predicting outputs, but learning
+  sequential decision policies
+\end{frame}
+
+% Slide 8: RL Concepts
+\begin{frame}{RL Concepts Key to Practitioners}
+  \begin{columns}
+    \column{0.5\textwidth}
+    \textbf{Core Components:}
+    \begin{itemize}
+      \item \textbf{Agent:} The decision maker
+      \item \textbf{Environment:} Where agent acts
+      \item \textbf{State:} Current situation
+      \item \textbf{Action:} Available choices
+      \item \textbf{Reward:} Feedback signal
+    \end{itemize}
+
+    \column{0.5\textwidth}
+    \textbf{Key Concepts:}
+    \begin{itemize}
+      \item \textbf{Policy:} How to act in each state
+      \item \textbf{Reward Function:} Quantifies feedback
+      \item \textbf{Exploration vs. Exploitation:} Balancing new
+        trials and established actions
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
+% Slide 9: RL in Practice
+\begin{frame}{RL in Practice — Beyond LLMs}
+  \begin{columns}
+    \column{0.5\textwidth}
+    \textbf{Classic Domains:}
+    \begin{itemize}
+      \item Robotics (navigation, manipulation)
+      \item Automated Driving
+      \item Games (chess, Go, e-sports)
+      \item Industrial Automation
+    \end{itemize}
+
+    \column{0.5\textwidth}
+    \textbf{Emerging Domains:}
+    \begin{itemize}
+      \item Healthcare: Treatment optimization
+      \item Finance: Algorithmic trading
+      \item Energy: Smart grid, HVAC
+      \item Networking: Resource scheduling
+    \end{itemize}
+  \end{columns}
+
+  \vspace{0.5cm}
+  \centering
+  \textbf{RL is increasingly practical with better simulators and frameworks}
+\end{frame}
+
+% Slide 10: RL's Current Frontier
+\begin{frame}{RL's Current Frontier}
+  \begin{itemize}
+    \item \textbf{Hybrid Learning:} Mixing RL with
+      supervised/unsupervised learning
+    \item \textbf{Sample Efficiency:} Model-based RL, offline RL for
+      less real-world data
+    \item \textbf{Transfer Learning:} Skills from simulation to real world
+    \item \textbf{Safety and Ethics:} Constrained RL for critical systems
+  \end{itemize}
+
+  \vspace{0.5cm}
+  \centering
+  Focus on making RL more practical and deployable
+\end{frame}
+
+% Slide 11: RLHF
+\begin{frame}{Deep Dive — RL on Top of LLMs (RLHF)}
+  \textbf{RLHF (Reinforcement Learning from Human Feedback):}
+  \begin{itemize}
+    \item Combines RL with human ratings to refine LLM outputs
+    \item Example: ChatGPT, GPT-4 use RLHF for alignment
+  \end{itemize}
+
+  \vspace{0.3cm}
+  \textbf{Process:}
+  \begin{enumerate}
+    \item Human evaluators rank outputs
+    \item Model learns a reward function
+    \item RL fine-tunes model to maximize predicted human reward
+  \end{enumerate}
+
+  \vspace{0.3cm}
+  \textbf{Benefits:} Safer, more aligned, less toxic responses\\
+  \textbf{Challenges:} Scaling human feedback, addressing evaluator bias
+\end{frame}
+
+% Slide 12: RLHF State of the Art
+\begin{frame}{RLHF — State of the Art and Beyond}
+  \textbf{Techniques:}
+  \begin{itemize}
+    \item Direct Preference Optimization (DPO)
+    \item Safe RLHF
+    \item Reward modeling from human and AI sources
+  \end{itemize}
+
+  \vspace{0.3cm}
+  \textbf{Emerging Frameworks:}
+  \begin{itemize}
+    \item Open source RLHF libraries (e.g., OpenRLHF)
+    \item Streamlined model fine-tuning for LLMs
+  \end{itemize}
+
+  \vspace{0.3cm}
+  \textbf{Research Directions:}
+  \begin{itemize}
+    \item Personalized reward models
+    \item RLHF for computer vision and robotics
+    \item Multi-modal agents
+  \end{itemize}
+\end{frame}
+
+% Slide 13: RLHF in Open-source Agents
+\begin{frame}{RLHF in Open-source Agents}
+  \textbf{Example: Ruler (OpenPipe)}
+  \begin{itemize}
+    \item Integrates LLMs, tools, memory, and RLHF-style feedback
+    \item Creates fully automated, interactive software agents
+  \end{itemize}
+
+  \vspace{0.5cm}
+  \textbf{Implications:}
+  \begin{itemize}
+    \item Agents that learn from users in real deployments
+    \item Adapt tool use based on feedback
+    \item Align to organizational values with less manual rule-setting
+  \end{itemize}
+
+  \vspace{0.5cm}
+  \centering
+  \textbf{RL/RLHF paradigm is moving from research to practical frameworks}
+\end{frame}
+
+% Slide 14: Resources
+\begin{frame}{Resources \& Deeper Dives}
+  \textbf{Online Courses/Books:}
+  \begin{itemize}
+    \item Coursera, edX courses
+    \item NeurIPS/ICML tutorials
+  \end{itemize}
+
+  \vspace{0.3cm}
+  \textbf{Practical RL Frameworks:}
+  \begin{itemize}
+    \item Stable Baselines3
+    \item RLlib
+    \item OpenRLHF
+  \end{itemize}
+
+  \vspace{0.3cm}
+  \textbf{Further Reading:}
+  \begin{itemize}
+    \item Recent reviews on RLHF and RL frontiers
+    \item State-of-the-art trends and practical challenges
+  \end{itemize}
+\end{frame}
+
+% Slide 15: Q&A
+\begin{frame}{Q\&A and Discussion}
+  \centering
+  \Large
+  Questions about:
+  \begin{itemize}
+    \item Practical deployment?
+    \item RL/RLHF challenges?
+    \item ML use cases?
+    \item Getting started with these frameworks?
+  \end{itemize}
+\end{frame}
+
+\end{document}
+

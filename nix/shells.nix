@@ -4,7 +4,7 @@
   inputs,
   system,
   ...
-} @ inputs: let
+} @ args: let
   # UV stuff
   #inherit (uvBoilerplate) uvShellSet;
   # Input packages
@@ -12,6 +12,8 @@
   # Default shell
   defaultPackages = with pkgs; [
     nodePackages_latest.nodejs
+    beamerpresenter
+    args.tex
   ];
   defaultHooks = ''
     # Make our local node packages available to our shell; for mcp's

@@ -38,6 +38,21 @@
       #  inherit inputs system projectName projectDir;
       #};
       pkgs = import nixpkgs {inherit system;};
+      # LaTeX
+      tex = pkgs.texlive.combine {
+        inherit
+          (pkgs.texlive)
+          scheme-basic
+          beamer
+          booktabs
+          hyperref
+          amsmath
+          graphicxpsd
+          latexmk
+          ;
+        #(setq org-latex-compiler "lualatex")
+        #(setq org-preview-latex-default-process 'dvisvgm)
+      };
     in {
       #checks = import ./nix/checks.nix {
       #  inherit uvBoilerplate projectName;
@@ -49,7 +64,7 @@
         inherit pkgs inputs system;
       };
       devShells = import ./nix/shells.nix {
-        inherit pkgs inputs system;
+        inherit pkgs tex inputs system;
       };
     });
 }
