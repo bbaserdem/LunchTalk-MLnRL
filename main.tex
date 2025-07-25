@@ -275,6 +275,20 @@
   \end{columns}
 \end{frame}
 
+% Transition Slide: From ML to RL
+\begin{frame}[plain]
+  \begin{center}
+    \vspace{2cm}
+    \Huge\textbf{Reinforcement Learning}
+    
+    \vspace{1cm}
+    \Large Learning Through Interaction
+    
+    \vspace{2cm}
+    \normalsize From Pattern Recognition to Decision Making
+  \end{center}
+\end{frame}
+
 % Slide 11: What is Reinforcement Learning?
 \begin{frame}{What is Reinforcement Learning (RL)?}
   \textbf{Core Idea:} Agent explores, makes decisions, receives
@@ -286,8 +300,7 @@
       \node[draw, rectangle] (agent) at (0,2) {Agent};
       \node[draw, rectangle] (env) at (4,2) {Environment};
       \draw[->, thick] (agent) -- node[above] {Action} (env);
-      \draw[->, thick] (env) to[bend right=30] node[below] {State,
-      Reward} (agent);
+      \draw[->, thick] (env) to[bend right=30] node[above] {State, Reward} (agent);
     \end{tikzpicture}
   \end{center}
 
@@ -320,6 +333,64 @@
   \end{columns}
 \end{frame}
 
+% Slide: Value and Q Functions Part 1
+\begin{frame}{Value Functions: Policy and State Values}
+  \textbf{Policy $\pi$:} Defines the agent's behavior
+  \begin{center}
+    \includegraphics[width=0.4\textwidth]{images/policy.png}
+  \end{center}
+  
+  \vspace{0.5cm}
+  \textbf{State-Value Function $V^\pi(s)$:} Expected return starting from state $s$ following policy $\pi$
+  \begin{center}
+    \includegraphics[width=0.7\textwidth]{images/valuefunct.png}
+  \end{center}
+\end{frame}
+
+% Slide: Value and Q Functions Part 2
+\begin{frame}{Value Functions: Action Values}
+  \textbf{Action-Value Function $Q^\pi(s,a)$:} Expected return starting from state $s$, taking action $a$, then following policy $\pi$
+  
+  \vspace{0.5cm}
+  \begin{center}
+    \includegraphics[width=0.6\textwidth]{images/qvalue.png}
+  \end{center}
+  
+  \vspace{0.5cm}
+  \textbf{Key Insight:}
+  \begin{itemize}
+    \item $V^\pi(s)$ tells us how good a state is
+    \item $Q^\pi(s,a)$ tells us how good an action is in a given state
+    \item Both depend on the policy $\pi$ being followed
+  \end{itemize}
+\end{frame}
+
+% Slide: Example Trajectories
+\begin{frame}{Example Trajectories with Different Discount Factors}
+  \begin{columns}
+    \column{0.5\textwidth}
+    \begin{center}
+      \includegraphics[width=\textwidth]{images/ex_gam4.eps}
+      
+      \textbf{$\gamma = 0.4$}
+    \end{center}
+    
+    \column{0.5\textwidth}
+    \begin{center}
+      \includegraphics[width=\textwidth]{images/ex_gam8.eps}
+      
+      \textbf{$\gamma = 0.8$}
+    \end{center}
+  \end{columns}
+  
+  \vspace{0.5cm}
+  \textbf{Discount Factor Impact:}
+  \begin{itemize}
+    \item Lower $\gamma$: Focus on immediate rewards
+    \item Higher $\gamma$: Consider long-term rewards
+  \end{itemize}
+\end{frame}
+
 % Slide 12: RL in Practice
 \begin{frame}{RL in Practice — Beyond LLMs}
   \begin{columns}
@@ -347,6 +418,31 @@
   \textbf{RL is increasingly practical with better simulators and frameworks}
 \end{frame}
 
+% Slide: Actor-Critic Architecture
+\begin{frame}{Actor-Critic: Combining Policy and Value}
+  \begin{columns}
+    \column{0.5\textwidth}
+    \begin{center}
+      \includegraphics[width=\textwidth]{images/actorcritic.png}
+    \end{center}
+    
+    \column{0.5\textwidth}
+    \textbf{Two Neural Networks:}
+    \begin{itemize}
+      \item \textbf{Actor:} Learns the policy $\pi(a|s)$
+      \item \textbf{Critic:} Learns the value function $V(s)$
+    \end{itemize}
+    
+    \vspace{0.5cm}
+    \textbf{Key Benefits:}
+    \begin{itemize}
+      \item More stable than pure policy gradient
+      \item Reduces variance in learning
+      \item Foundation for modern algorithms (A3C, PPO, SAC)
+    \end{itemize}
+  \end{columns}
+\end{frame}
+
 % Slide 10: RL's Current Frontier
 \begin{frame}{RL's Current Frontier}
   \begin{itemize}
@@ -361,6 +457,57 @@
   \vspace{0.5cm}
   \centering
   Focus on making RL more practical and deployable
+\end{frame}
+
+% Slide: RLHF Process Overview
+\begin{frame}{RLHF Process Overview}
+  \begin{center}
+    \resizebox{0.9\textwidth}{!}{
+    \begin{tikzpicture}[
+      node distance=1.5cm and 2cm,
+      box/.style={rectangle, draw, thick, minimum height=0.8cm, align=center, rounded corners},
+      group/.style={rectangle, draw, dashed, thick, rounded corners}
+    ]
+      % SFT Group
+      \node[group, minimum width=5cm, minimum height=3.5cm] (sft_group) {};
+      \node[above] at (sft_group.north) {\textbf{Supervised Fine-tuning}};
+      
+      \node[box] (pretrained) at (-1.5, 1) {Pretrained LLM};
+      \node[box, below of=pretrained] (human_data) {Human-labeled\\Prompts/Responses};
+      \node[box, below of=human_data] (sft_model) {Initial SFT Model};
+      
+      \draw[->, thick] (pretrained) -- (human_data);
+      \draw[->, thick] (human_data) -- (sft_model);
+      
+      % Reward Model Group
+      \node[group, minimum width=5cm, minimum height=3.5cm, right of=sft_group, xshift=3cm] (reward_group) {};
+      \node[above] at (reward_group.north) {\textbf{Reward Model Training}};
+      
+      \node[box] (sample) at (4.5, 1) {Sample Candidate\\Responses};
+      \node[box, below of=sample] (pref_data) {Human Preference\\Data};
+      \node[box, below of=pref_data] (train_reward) {Train Reward\\Model};
+      
+      \draw[->, thick] (sft_model) -- (sample);
+      \draw[->, thick] (sample) -- (pref_data);
+      \draw[->, thick] (pref_data) -- (train_reward);
+      
+      % RL Group
+      \node[group, minimum width=5cm, minimum height=3.5cm, right of=reward_group, xshift=3cm] (rl_group) {};
+      \node[above] at (rl_group.north) {\textbf{RL Fine-tuning}};
+      
+      \node[box] (policy) at (10.5, 0.5) {Policy Model};
+      \node[box, below of=policy, yshift=-0.3cm] (generate) {Generate Outputs};
+      \node[box, below of=generate, yshift=-0.3cm] (scores) {Reward Model\\Scores};
+      \node[box, left of=scores, xshift=-1.5cm] (ppo) {PPO Update};
+      
+      \draw[->, thick] (sft_model) to[out=0,in=180] (policy);
+      \draw[->, thick] (policy) -- (generate);
+      \draw[->, thick] (generate) -- (scores);
+      \draw[->, thick] (scores) -- (ppo);
+      \draw[->, thick] (ppo) to[out=90,in=180] (policy);
+    \end{tikzpicture}
+    }
+  \end{center}
 \end{frame}
 
 % Slide 11: RLHF
@@ -465,6 +612,17 @@
     \item ML use cases?
     \item Getting started with these frameworks?
   \end{itemize}
+\end{frame}
+
+% Thank You Slide
+\begin{frame}[plain]
+  \begin{center}
+    \vspace{3cm}
+    \Huge\textbf{Thank You for Listening!}
+    
+    \vspace{2cm}
+    \Large Questions \& Discussion
+  \end{center}
 \end{frame}
 
 \end{document}
