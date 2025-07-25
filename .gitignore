@@ -57,6 +57,8 @@ _minted*/
 # Exclude if you want to keep PDFs in repo
 # !main.pdf
 # !presentation.pdf
+!images/ex_gam4-eps-converted-to.pdf
+!images/ex_gam8-eps-converted-to.pdf
 
 # Node.js
 node_modules/
